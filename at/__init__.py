@@ -48,7 +48,7 @@ def index():
                     {"property":"phone", "value":form.phone.data},
                     {"property":"hs_lead_status", "value":"NEW"},
 
-                    {"property": "caoch", "value": int(form.caoch.data)},
+                    {"property": "caoch", "value": form.caoch.data},
                     {"property":"region", "value": int(form.region.data)},
                     {"property":"gender", "value": form.gender.data},
 
