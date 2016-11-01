@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><body class="ie ie7"><![endif]-->
+<!--[if IE 8 ]><body class="ie ie8"><![endif]-->
+<!--[if IE 9 ]><body class="ie ie9"><![endif]-->
+<html class='no-js' lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Standard Chartered</title>
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&subset=vietnamese" rel="stylesheet">
+    <link type="image/x-icon" href="{{url_for('static', filename='images/fav.png')}}" rel="shortcut icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/responsive.css')}}">
+
+   <style>
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+       .software_slider {
+            height: 750px;
+        }
+        .desc_form{
+            font-size: 18px;
+            line-height: 22px;
+        }
+        .uppercase{
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main-holder wrap">
+        <header class='main-wrapper header'>
+            <div class="container apex">
+                <div class="row">
+                    <nav class="navbar header-navbar" role="navigation">
+                        <div class="navbar-header">
+                            <div class="logo navbar-brand">
+                                <a href="javascript:void(0);" title="Standard Chartered"></a>
+                            </div>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <div class="navbar-right">
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class='main-wrapper '>
+            <section class="relative software_slider">
+                <div class="forma-slider">
+                    <div id="form_slider" data-anchor="form_slider">
+                        <ul class="form-bxslider list-unstyled">
+                            <li>
+                                <div class="img-slider  slide-man1 fin_2"></div>
+                            </li>
+                            <li>
+                                <div class="img-slider slide-man2 fin_2"></div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="clearfix visible-xs visible-md" style="height:0px;"></div>
+                    <div class="container relative fin_3" id='elem-portable'>
+                        <div class="reg-now">
+
+                                    {% for field in form if field.widget.input_type != 'hidden' %}
+                                        {% if field.errors %}
+                                        <div class='alert alert-danger'><a class='close' data-dismiss='alert'>×</a>
+                                            {%for error in field.errors%}
+                                                {{error}}</br>
+                                            {%endfor%}
+                                        </div>
+                                        {%endif%}
+                                    {%endfor%}
+
+                                     <form class='reg-now-visible' id='formIndex' action="/" method="post" accept-charset="utf-8" role="form">
+                                        {{ form.hidden_tag() }}
+
+                                         <div class='control-group'>
+                                            <input type="text" name="name" {%if form.data.name%} value="{{form.data.name|safe}}" {%endif%} placeholder='Họ và tên' required oninvalid="setCustomValidity('Họ và tên không chính xác!')" oninput="setCustomValidity('')"/>
+                                        </div>
+
+                                        <div class='control-group'>
+                                            <input type="text" id="phone" name="phone" value={%if form.data.phone%} "{{form.data.phone|safe}}" {%else%} "" {%endif%} placeholder='Số điện thoại' required pattern="^[0-9]{10,12}$" oninvalid="setCustomValidity('Số điện thoại không chính xác')" oninput="setCustomValidity('')"/>
+                                        </div>
+
+                                        <div class='control-group'>
+                                            <input type="text" name="email" value={%if form.data.email%} "{{form.data.email|safe}}" {%else%} "" {%endif%} class='insert-attr' placeholder='Email' required pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" oninvalid="setCustomValidity('Email không chính xác!')" oninput="setCustomValidity('')"/>
+                                        </div>
+
+                                        <div class='control-group'>
+                                            <input type="text" class="caoch" name="caoch" {%if form.data.caoch%} value="{{form.data.caoch|safe}}" {%endif%} placeholder='Mức thu nhập'/>
+                                        </div>
+
+                                        <div class="relative">
+                                            {{slbox_region|safe}}
+                                        </div>
+
+
+                                        <div class="relative">
+                                             {{slbox_gender|safe}}
+
+                                        </div>
+
+                                        <p>
+                                              {%if form.toidongy.data%}
+                                            <input type="checkbox" id="toidongy" name="toidongy" required oninvalid="setCustomValidity('Bạn phải đồng ý với điều khoản này')" onchange="setCustomValidity('')" checked/>
+                                            {%else%}
+                                            <input type="checkbox" id="toidongy1" name="toidongy" required oninvalid="setCustomValidity('Bạn phải đồng ý với điều khoản này')" onchange="setCustomValidity('')"/>
+                                            {%endif%}
+                                            Bằng cách nhấp vào "Đăng Ký Ngay" Quý khách đồng ý với <a href="https://www.sc.com/vn/terms-conditions/" target="_blank" style="color: #fff;">điều khoản</a> của ngân hàng Standard Chartered.</p>
+                                        <button type="submit" value="Register Now" class='btn submit sub-form' name="submit">Đăng ký ngay</button>
+                                         <!--<div class="text-center">-->
+                                        <h2>Vay Tiêu dùng</h2>
+                                        <p class="desc_form">
+                                            Ngay hôm nay, hãy thực hiện những kỳ nghỉ trong mơ, du học mở mang kiến thức, tậu xe hơi hay trang hoàng lại ngôi nhà của bạn
+                                        </p>
+                                    </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="subMenu">
+                <div class="container make-row " style="text-align:center">
+                    <div class="f-menu">
+                        <ul>
+                            <li><a href="#tinhnang" class="subNavBtn">Tính năng</a>|</li>
+                            <li><a href="#tienich" class="subNavBtn">Tiện ích</a>|</li>
+                            <li><a href="#thongtin" class="subNavBtn">Thông tin cần thiết</a>|</li>
+                            <li><a href="#dieukien" class="subNavBtn">Điều kiện</a>|</li>
+                            <li><a href="#cauhoi" class="subNavBtn">Câu hỏi thường gặp</a>|</li>
+                            <li><a href="#dieukien" class="subNavBtn">Điều khoản & điều kiện</a></li>
+                            <div class="clr"></div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <section class="container make-row ">
+                <div class="tinhnang">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center">
+                                <div class="img-holder mb-25">
+                                    <img alt="" src="{{url_for('static', filename='images/icon1.png')}}">
+                                </div>
+                                <div class="content">
+                                    <h4>Duyệt hồ sơ nhanh chóng</h4>
+                                    <p>Dịch vụ thông báo kết quả khoản vay trong vòng 24 giờ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center">
+                                <div class="img-holder mb-25">
+                                    <img alt="" src="{{url_for('static', filename='images/icon2.png')}}">
+                                </div>
+                                <div class="content">
+                                    <h4>Lãi suất cực kỳ cạnh tranh, thanh toán hoàn trả linh hoạt</h4>
+                                    <p>Lãi suất cạnh tranh, theo dư nợ giảm dần
+Số tiền Thanh Toán Đều Theo Tháng (TTĐTT) bằng nhau.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center">
+                                <div class="img-holder mb-25">
+                                    <img alt="" src="{{url_for('static', filename='images/icon3.png')}}">
+                                </div>
+                                <div class="content">
+                                    <h4>Dịch vụ chăm sóc và hỗ trợ khách hàng chu đáo</h4>
+                                    <p>Dịch vụ khách hàng tận nơi nhận Đơn vay và mang Hợp Đồng Vay đến để khách hàng ký. Chăm sóc và hỗ trợ khách hàng chu đáo.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </section>
+            <section class="container make-row">
+                <div class="tienich">
+                    <div class="row">
+                        <div class="sec-title has-bg">
+                            <h3> Tiện ích</h3>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="tienich-info">
+                                <img src="{{url_for('static', filename='images/tienich1.jpg')}}" alt="">
+
+                            </div>
+                            <div class="t-title">
+                                <a href="javascript:void(0);">Không tài sản đảm bảo và bảo lãnh công ty</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="tienich-info">
+                                <img src="{{url_for('static', filename='images/tienich2.jpg')}}" alt="">
+
+                            </div>
+                            <div class="t-title">
+                                <a href="javascript:void(0);">Số tiền vay tối thiểu 18 triệu đồng, tối đa 400 triệu đồng </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="tienich-info">
+                                <img src="{{url_for('static', filename='images/tienich3.jpg')}}" alt="">
+
+                            </div>
+                            <div class="t-title">
+                                <a href="javascript:void(0);">Thời hạn vay từ 12 đến 60 tháng</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="tienich-info">
+                                <img src="{{url_for('static', filename='images/tienich4.jpg')}}" alt="">
+
+                            </div>
+                            <div class="t-title">
+                                <a href="javascript:void(0);">Vay đến tối đa 12 lần thu nhập</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="tienich-info">
+                                <img src="{{url_for('static', filename='images/tienich5.jpg')}}" alt="">
+
+                            </div>
+                            <div class="t-title">
+                                <a href="javascript:void(0);">Và hàng ngàn ưu đãi khác</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container make-row">
+                <div class="thongtin s3">
+                    <div class="row">
+                        <div class="sec-title has-bg">
+                            <h3>Thông tin cần thiết</h3>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <a href="https://www.sc.com/global/av/vn-08-personal-loan-bundle-form-vn.pdf" target="_blank">
+                                <img src="{{url_for('static', filename='images/icon5.png')}}">
+                                <div class="info2">Tải mẫu đơn đăng ký</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <a href="https://www.sc.com/vn/borrow/personal-loan/apply/" target="_blank">
+                                <img src="{{url_for('static', filename='images/icon6.png')}}">
+                                <div class="info2">Đăng ký vay trực tuyến</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <a href="https://www.sc.com/vn/personal-banking/personal-loan/emi-calculator/vn/" target="_blank">
+                                <img src="{{url_for('static', filename='images/icon12.png')}}">
+                                <div class="info2">Tính số tiền phải trả hàng tháng</div>
+
+                            </a>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <a href="https://www.sc.com/global/av/vn-08-personal-loan-pl-online-deduction-vn.pdf" target="_blank">
+                                <img src="{{url_for('static', filename='images/icon7.png')}}">
+                                <div class="info2">Vay tiêu dùng cá nhân trực tuyến giảm 1% lãi suất vay – Điều khoản & Điều kiện</div>
+
+                            </a>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <a href="https://www.sc.com/global/av/vn-08-personal-loan-pl-preapproved-vn.pdf" target="_blank">
+                                <img src="{{url_for('static', filename='images/icon10.png')}}">
+                                <div class="info2">Vay Tiêu Dùng Cá Nhân Phê duyệt trước</div>
+
+                            </a>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <a href="https://www.sc.com/global/av/vn-08-personal-loan-24h-service-vn.pdf" target="_blank">
+                                <img src="{{url_for('static', filename='images/icon9.png')}}">
+                                <div class="info2">Cam Kết Dịch Vụ 24 giờ</div>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section style="background:#21aa47">
+                <div class="container make-row">
+                    <div class="dieukien s4">
+                        <div class="row">
+                            <div class="bg-tn">
+
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="sec-title">
+                                        <h3 style="color:#fff;"> Điều kiện</h3>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Công dân Việt Nam</div>
+                                    </div>
+                                    <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Tuổi từ 22 đến 60 </div>
+                                    </div>
+                                   <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Thu nhập (sau thuế) tối thiểu hàng tháng: 6 triệu đồng </div>
+                                    </div>
+                                   <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Thu nhập được nhận qua tài khoản ngân hàng</div>
+                                    </div>
+                                   <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Thời gian làm việc tối thiểu
+                                        </div>
+                                    </div>
+                                   <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Hoàn tất thời gian thử việc
+                                        <br>Tối thiểu 3 tháng trong công việc hiện tại. Nếu chưa đủ 3 tháng, khách hàng phải có Hợp đồng lao động tối thiểu 1 năm với công ty trước đó.
+                                        </div>
+                                    </div>
+                                   <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Có hộ khẩu thường trú hoặc tạm trú tại các khu vực: Thành phố Hồ Chí Minh, Hà Nội or Bình Dương
+                                        </div>
+                                    </div>
+                                   <div class="clr"></div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="sec-title">
+                                        <h3 style="color:#fff;">Điều kiện & Điều khoản</h3>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">
+                                            <a href="https://www.sc.com/global/av/vn-vn-borrow-personal-loan-terms-and-conditions.pdf" target="_blank" style="color: #fff;">
+                                                Xem chi tiết
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="clr"></div>
+
+                                    <div class="sec-title">
+                                        <h3 style="color:#fff;">Hồ Sơ</h3>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Hợp đồng lao động/Giấy chứng nhận việc làm (nếu không có Hợp đồng lao động)</div>
+                                    </div>
+                                    <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Sao kê ngân hàng (và phiếu lương nếu cần)</div>
+                                    </div>
+                                    <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Bản sao CMND/Hộ chiếu</div>
+                                    </div>
+                                    <div class="clr"></div>
+
+                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">Bản sao Hộ Khẩu</div>
+                                    </div>
+                                    <div class="clr"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="dkt">KT3 hoặc Giấy Xác Nhận của công an hoặc Hóa đơn điện nước (đối với trường hợp tạm trú)</div>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container make-row">
+                <div class="cauhoi s5">
+                    <div class="row">
+                        <div class="sec-title">
+                            <h3> Câu hỏi thường gặp</h3>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="panel-group" aria-multiselectable="true" role="tablist">
+
+                                <div class="panel">
+                                    <div class="panel-heading" role="tab" data-toggle="collapse" href="#Collapse1" aria-expanded="false">
+                                        <a class="panel-title">
+                                           Standard Chartered có yêu cầu nào về mục đích của việc sử dụng Khoản Vay Tiêu Dùng Cá Nhân?
+                                        </a>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="Collapse1" role="tabpanel">
+                                        <div class="panel-body">
+                                            Khoản Vay Tiêu Dùng Cá Nhân của Standard Chartered được sử dụng cho mọi mục đích tiêu dùng cá nhân, ngọai trừ việc đầu tư cổ phiếu, vàng và ngọai tệ.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel">
+                                    <div class="panel-heading" role="tab" data-toggle="collapse" href="#Collapse2" aria-expanded="false">
+                                        <a class="panel-title collapsed">
+                                          Tại sao tôi nên nộp đơn cho Khoản Vay Tiêu Dùng Cá Nhân tại Standard Chartered?
+                                        </a>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="Collapse2" role="tabpanel">
+                                        <div class="panel-body">
+                                            Điều gì khiến Khoản Vay Tiêu Dùng Cá Nhân tại Standard Chartered hấp dẫn hơn ở các Ngân Hàng khác?
+Lăi suất cạnh tranh. Quy trình dễ dàng, ít giấy tờ, thủ tục đơn giản, đặc biệt là đối với những Khách Hàng là Nhân viên hưởng lương và có tài khoản lương tại Standard Chartered. Bạn sẽ được nhận Khoản vay và các dịch vụ bộ sung nhằm phục vụ cho việc giao dịch với Ngân Hàng Standard Chartered trở nên dễ dàng thuận tiện nhất. Dịch vụ Khách Hàng và tư vấn tài chính từ Ngân Hàng Quốc tế hàng đầu thế giới
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel">
+                                    <div class="panel-heading" role="tab" data-toggle="collapse" href="#Collapse3" aria-expanded="false">
+                                        <a class="panel-title collapsed">
+                                          Khi nào và bằng cách nào tôi biết được kết quả xét duyệt của hồ sơ vay?
+                                        </a>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="Collapse3" role="tabpanel">
+                                        <div class="panel-body">
+                                            Dịch vụ Xét Duyệt Khoản Vay 24 giờ sẽ thông báo kết qủa xét duyệt khoản vay của bạn trong vòng 24 giờ sau khi hồ sơ vay hoàn chỉnh của bạn được nộp vào. Việc thông báo sẽ được thực hiện bằng tin nhắn đến điện thọai di động của bạn.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel">
+                                    <div class="panel-heading" role="tab">
+                                        <a class="panel-title collapsed" data-toggle="collapse" href="#Collapse4" aria-expanded="false">
+                                         Tôi phải làm gì nếu tôi muốn nhận lại tất cả những giấy tờ đă nộp cho Ngân Hàng?
+                                        </a>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="Collapse4" role="tabpanel">
+                                        <div class="panel-body">
+                                            Tất cả những giấy tờ bạn nộp cho Ngân Hàng sẽ không được hoàn lại.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel">
+                                    <div class="panel-heading" role="tab">
+                                        <a class="panel-title collapsed" data-toggle="collapse" href="#Collapse5" aria-expanded="false">
+                                         Nếu khoản vay của tôi được chấp nhận thì tôi có thể nhận tiền bằng cách nào? Standard Chartered có thể chuyển tiền qua tài khoản của tôi ở ngân hàng khác hay không?
+                                        </a>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="Collapse5" role="tabpanel">
+                                        <div class="panel-body">
+                                            Bạn sẽ được mở một tài khoản tại Standard Chartered dùng để giải ngân khoản vay và cho vịêc trả nợ nếu khoản vay của bạn được chấp thuận. Số tiền vay sẽ được giải ngân vào tài khoản này và bạn có thể nhận số tiền này tại Chi nhánh hoặc tại máy rút tiền của Standard Chartered hoặc các máy ATM thuộc liên minh mạng Smartlink. Ngân Hàng không thưc hiện việc chuyển khoản vay được giải ngân vào tài khoản khách hàng tại Ngân Hàng khác.
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel">
+                                    <div class="panel-heading" role="tab">
+                                        <a class="panel-title collapsed" data-toggle="collapse" href="#Collapse6" aria-expanded="false">
+                                         Tôi nên đến đâu để đóng tiền trả góp hàng tháng?
+                                        </a>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="Collapse6" role="tabpanel">
+                                        <div class="panel-body">
+                                            Ngân Hàng sẽ tư động trích nợ từ tài khoản tiền gửi / tài khoản lương của bạn mở tại Ngận Hàng khi đăng kí Khoản vay. Do đó, bạn chi cần duy trì đủ số dư trong tài khoản để thanh toán khoản phải trả hàng tháng này, việc trích nợ sẽ được thực hiện bởi Ngân Hàng.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel">
+                                    <div class="panel-heading" role="tab">
+                                        <a class="panel-title collapsed" data-toggle="collapse" href="#Collapse7" aria-expanded="false">
+                                         Nếu tôi thay đổi địa chỉ gửi thư sau khi nhận khoản vay thì tôi nên liên hệ với ai? Tôi phải nộp những hồ sơ gì?
+                                        </a>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="Collapse7" role="tabpanel">
+                                        <div class="panel-body">
+                                            Nếu bạn thay đổi địa chỉ gửi thư hoặc các thông tin cá nhân khác như số điện thọai di động, điện thọai nhà, vv…, bạn có thể truy cập vào trang mạng dịch vụ ngân hàng trực tuyến của Ngân Hàng để cập nhật các thông tin cá nhân. Bạn cũng có thể gọi vào Trung Tâm Tư Vấn Khách hàng số 08 39110000 / 04 36960000 để được giúp đỡ hoặc trực tiếp đến Ngân Hàng để cập nhật thông tin mới của bạn. .
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer class='main-wrapper footer'>
+            <div class="container bottom">
+                <div class="fl copyright">COPYRIGHT (C) 2016 ACCESSTRADE VN & STANDARD CHARTERED</div>
+                <nav>
+                    <ul style="margin:0px;">
+                        <li>
+                            <a href="javascript:void(0);"><img src="{{url_for('static', filename='images/logo1.png')}}"></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><img src="{{url_for('static', filename='images/logo2.png')}}"></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><img src="{{url_for('static', filename='images/logo3.png')}}"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+        <div id="back-top-wrapper" class="visible-lg">
+            <p id="back-top" class='bounceOut'>
+                <a href="#top">
+                    <span></span>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="mask"></div>
+    <script src="{{url_for('static', filename='js/jquery-1.10.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/modernizr.js')}}"></script>
+    <script src="{{url_for('static', filename='js/jquery.bxslider.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/jquery.customSelect.js')}}"></script>
+    <script src="{{url_for('static', filename='js/jquery.validate.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/jquery.colorbox-min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/custom.js')}}"></script>
+    <script src="{{url_for('static', filename='js/loader.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.subMenu').smint({
+                'scrollSpeed': 1000
+            });
+        });
+        $('.form-bxslider').bxSlider({
+            mode: 'fade'
+            , auto: true
+            , pause: 5000
+        });
+    </script>
+
+    <script src="//cdn.accesstrade.vn/js/tracking.js" ></script>
+        <script type="text/javascript">
+            AT.track();
+            function clearValidity() {
+                document.getElementById('yes').setCustomValidity('');
+            }
+
+            function onInvalidCustom(idstr) {
+                var me = document.getElementById(idstr);
+                me.setCustomValidity('Số điện thoại không chính xác');
+                //me.setCustomValidity('');
+            }
+
+            function getCookie(cname) {
+                    var name = cname + "=";
+                    var ca = document.cookie.split(';');
+                    for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) == 0) {
+                            return c.substring(name.length,c.length);
+                        }
+                    }
+                    return "";
+            }
+                //alert(getCookie("_aff_network") + "|" + getCookie("_aff_sid"))
+                $("#aff_source").val(getCookie("_aff_network"));
+                $("#aff_sid").val(getCookie("_aff_sid"));
+            $(document).ready(function(){
+                $('input[name=email]').keyup(function() {
+                      this.value = this.value.toLowerCase();
+                    });
+              });
+        </script>
+
+</body>
+</html>
+
+
+
+
